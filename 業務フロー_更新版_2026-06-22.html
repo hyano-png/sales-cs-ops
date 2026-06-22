@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>セールス〜CS 業務フロー（更新版）</title>
+<style>
+  :root{
+    --is:#5b6472; --is-bg:#f6f7f8;
+    --fs:#13987f; --fs-bg:#eafbf8;
+    --ops:#dd5f2a; --ops-bg:#fff4ea;
+    --cs:#6a2fd6; --cs-bg:#f4eefc;
+    --ink:#1f2937; --sub:#56606b;
+    --warn:#c23b22;
+    --pin-bg:#f3e6cb; --pin-ink:#7a531c;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:28px;
+    background:#f4f5f6;
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+    color:var(--ink);
+  }
+  .page-title{font-size:20px; font-weight:800; margin:0 0 4px;}
+  .page-sub{font-size:13px; color:var(--sub); margin:0 0 18px;}
+
+  .changelog{
+    background:#fff; border:1.5px solid #d8dce1; border-radius:10px;
+    padding:14px 18px; margin-bottom:22px; max-width:1100px;
+  }
+  .changelog h3{margin:0 0 8px; font-size:13.5px; color:var(--ink);}
+  .changelog ol{margin:0; padding-left:20px; font-size:12.5px; color:var(--sub); line-height:1.7;}
+  .changelog b{color:var(--ink);}
+
+  .scroll-wrap{overflow-x:auto; padding-bottom:10px;}
+  .board{
+    position:relative; display:flex; min-width:1360px;
+    border:1px solid #dfe3e7; border-radius:12px; overflow:visible;
+    background:#fff;
+  }
+  .lane{flex:1 1 0; min-width:320px; display:flex; flex-direction:column;}
+  .lane:nth-child(3){flex:1.05 1 0;}
+  .lane + .lane{border-left:1px solid #e5e7eb;}
+  .lane-head{padding:13px 10px; text-align:center; font-weight:800; font-size:14.5px; color:#fff;}
+  .head-is{background:var(--is);} .head-fs{background:var(--fs);}
+  .head-ops{background:var(--ops);} .head-cs{background:var(--cs);}
+  .lane-body{flex:1; padding:22px 16px; display:flex; flex-direction:column; gap:30px;}
+  .body-is{background:var(--is-bg);} .body-fs{background:var(--fs-bg);}
+  .body-ops{background:var(--ops-bg);} .body-cs{background:var(--cs-bg);}
+
+  .box{
+    background:#fff; border:1.5px solid #d9dde2; border-radius:10px;
+    padding:12px 14px; font-size:12.7px; line-height:1.65; position:relative;
+    box-shadow:0 1px 2px rgba(0,0,0,.05);
+  }
+  .box h4{margin:0 0 6px; font-size:13.5px; font-weight:800;}
+  .box ul{margin:4px 0 0; padding-left:17px;}
+  .box li{margin-bottom:3px;}
+  .box .lead{font-weight:800; font-size:12.5px; margin:2px 0 4px;}
+  .box .lead.muted{color:var(--sub); font-weight:700;}
+  .box .small{font-size:11.5px; color:var(--sub); margin-top:4px;}
+  .box .divider{border-top:1px dashed #dfe3e7; margin:10px 0;}
+
+  .box.plain-center{display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; min-height:48px;}
+  .box-is{border-color:#c7ccd2;}
+  .box-fs-plain{border-color:#bfe6dd;}
+  .box-ops-plain{border-color:#f0c7ab;}
+
+  .tag-row{display:flex; gap:6px; align-items:center; margin-bottom:7px;}
+  .tag-hash{background:#111827; color:#fff; font-weight:800; font-size:10.5px; padding:1px 6px; border-radius:4px;}
+  .tag-wf{background:#bdeee1; color:#0d6c56; font-weight:800; font-size:10.5px; padding:2px 8px; border-radius:4px;}
+  .tag-wf-btn{background:#ded0fb; color:#5326a8; font-weight:800; font-size:10.5px; padding:2px 8px; border-radius:4px;}
+
+  .wf-fs{border:2px dashed var(--fs); background:#fff;}
+  .wf-cs{border:2px dashed var(--cs); background:#fff;}
+
+  .box-warn{border:2px solid var(--ops); background:#fff8f0;}
+  .box-warn h4{color:var(--ops);}
+
+  .caution{color:var(--warn); font-weight:700; font-size:12px; margin-top:9px; display:flex; gap:5px;}
+  .pin-note{background:var(--pin-bg); color:var(--pin-ink); border-radius:6px; padding:6px 10px; font-size:11.5px; margin-top:9px;}
+  .pending-note{background:#eef0f3; color:#566; border-radius:6px; padding:7px 10px; font-size:11.8px; margin-top:6px; border:1px dashed #c3c9d0;}
+
+  .diamond-wrap{position:relative; height:108px; display:flex; align-items:center; justify-content:center;}
+  .diamond{width:64px; height:64px; border:2px solid var(--fs); background:#fff; transform:rotate(45deg);}
+  .diamond-label{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; font-size:12.5px; font-weight:800; color:var(--fs); padding:0 8px; white-space:nowrap;}
+
+  .fork-chip{display:inline-block; font-size:11px; font-weight:800; color:var(--fs); background:#d8f3ec; padding:2px 9px; border-radius:10px; margin-bottom:9px;}
+  .fork-row{display:flex; gap:10px;}
+  .fork-row > div{flex:1; display:flex; flex-direction:column;}
+
+  .subbox-row{display:flex; gap:8px; margin-top:8px;}
+  .subbox{flex:1; border:1px solid #f0c7ab; border-radius:6px; padding:6px 8px; font-size:11.5px; background:#fffaf4;}
+
+  svg.connector-layer{position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:visible;}
+  .arrow{fill:none; stroke-width:2;}
+  .solid{stroke:#1f2937;}
+  .dashedred{stroke:var(--warn); stroke-dasharray:6 5;}
+
+  .legend{max-width:1360px; margin-top:14px; font-size:11.8px; color:var(--sub);}
+</style>
+</head>
+<body>
+
+<p class="page-title">セールス〜CS 業務フロー（更新版）</p>
+<p class="page-sub">更新日：2026/06/22　※CS「有償代行」検知後の具体的な納品フローは別途詳細化予定です</p>
+
+<div class="changelog">
+  <h3>✅ 今回の更新ポイント</h3>
+  <ol>
+    <li><b>①受注前条件確認</b>：工数反映のための必須連携条件（スポット作業の種類）を明記。非必須の問い合わせ例・対応できない可能性がある旨の注意書き・週初の工数共有チェック依頼を追加。</li>
+    <li><b>②受注後フロー</b>：分岐を「通常案件／スポット案件」に整理（旧イレギュラー作業verを名称変更）。<b>④初期セットアップは通常案件のみ</b>から発生する構成に変更し、<b>⑤→⑦の接続を解消</b>。</li>
+    <li><b>⑥有償代行</b>：有償代行が確定したタイミングで（共通の）<b>「A. p6キックオフ依頼」WFを発動 → サンプル対応 → 本受注</b>、という流れに更新。本受注後の具体的な納品フローは追って追記。</li>
+  </ol>
+</div>
+
+<div class="scroll-wrap">
+<div class="board" id="board">
+  <svg class="connector-layer" id="connlayer"></svg>
+
+  <!-- IS -->
+  <div class="lane">
+    <div class="lane-head head-is">IS（インサイドセールス）</div>
+    <div class="lane-body body-is">
+      <div class="box box-is" id="is1">
+        <div class="lead">① アポ獲得 → FSへ引き渡し</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FS -->
+  <div class="lane">
+    <div class="lane-head head-fs">FS（フィールドセールス）</div>
+    <div class="lane-body body-fs">
+
+      <div class="box plain-center box-fs-plain" id="fs1">② 商談</div>
+
+      <div class="box wf-fs" id="fs2">
+        <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf">Slack WF</span></div>
+        <h4>受注前条件確認</h4>
+        <div class="lead">【必須連携】工数反映のため、以下は必ず早い段階で申請</div>
+        <ul>
+          <li>スポット作業依頼（例：エレマックス案件）</li>
+          <li>スポットの探索代行作業（例：中電工）</li>
+          <li>初月から有償探索代行が発生する可能性のある案件が発足した時</li>
+        </ul>
+        <div class="small">※いずれも話が上がった早い段階（納期まで3週間確保できるタイミング）で申請してください</div>
+        <div class="small">※確度が低い場合でも連携ください（確度に応じて工数を確保しておきます）</div>
+        <div class="divider"></div>
+        <div class="lead muted">（必須ではない使い方の例）</div>
+        <ul>
+          <li>「こういう条件で探したい」などのクライアントの要望に対して、対応可否の問い合わせ</li>
+        </ul>
+        <div class="caution">⚠ 受注前条件確認が出ていないスポット作業は工数を確保できないため、希望通りの期日で対応できない可能性があります</div>
+        <div class="pin-note">📌 週初に #ops_general で最新の工数状況・把握している案件一覧を共有します。漏れている案件がないか確認してください</div>
+      </div>
+
+      <div class="box wf-fs" id="fs3">
+        <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf">Slack WF</span></div>
+        <h4>受注前サンプル依頼</h4>
+        <div class="small">※必要な場合のみ実施</div>
+        <ul>
+          <li>商談で見せる実例サンプルを依頼</li>
+          <li>30分で対応できるボリュームに限定</li>
+        </ul>
+      </div>
+
+      <div class="box plain-center box-fs-plain" id="fs4">③ 受注</div>
+
+      <div class="diamond-wrap" id="fs5">
+        <div class="diamond"></div>
+        <div class="diamond-label">通常案件 / スポット案件</div>
+      </div>
+
+      <div class="fork-row">
+        <div>
+          <div class="box wf-fs" id="fs6a">
+            <div class="fork-chip">A：通常案件</div>
+            <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf">Slack WF</span></div>
+            <h4>A. p6キックオフ依頼</h4>
+            <ul>
+              <li>このWF内で初期セットアップ（④）の要否も明記</li>
+            </ul>
+            <div class="small">※CSの有償代行依頼（⑥）発生時もこのWFを共通で使用</div>
+          </div>
+        </div>
+        <div>
+          <div class="box box-fs-plain" id="fs6b">
+            <div class="fork-chip">B：スポット案件</div>
+            <h4>B. スポット案件（基本CSが絡まないもの）</h4>
+            <ul>
+              <li>新規WFは出さない</li>
+              <li>事前に提出済みの「受注前条件確認」WF上で本受注の旨を共有</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Ops -->
+  <div class="lane">
+    <div class="lane-head head-ops">Ops（オペレーション）</div>
+    <div class="lane-body body-ops">
+
+      <div id="ops-spacer-1" style="height:0px;"></div>
+
+      <div class="box box-ops-plain" id="ops2">
+        <h4>④ 初期セットアップリスト作成</h4>
+        不要な場合はWF内に明記（通常案件＝Aのみ流入）
+      </div>
+
+      <div class="box box-ops-plain" id="ops3">
+        <h4>⑤ 作業開始・納品（初回）</h4>
+        クライアント環境で作業を実施
+        <div class="small">※スポット案件（B）は④を経由せず直接ここに合流</div>
+      </div>
+
+      <div id="ops-spacer-2" style="height:0px;"></div>
+
+      <div class="box box-ops-plain" id="ops4">
+        <h4>⑦ 作業開始・納品（有償代行）</h4>
+        <ul>
+          <li>Ops環境で作業 → クライアント環境へ納品</li>
+          <li>納品形式は条件により分岐（下記）</li>
+        </ul>
+        <div class="subbox-row">
+          <div class="subbox">◇条件合致：クライアント環境へインポート</div>
+          <div class="subbox">◇条件不一致：CSV／カスタム項目に○×でレポート</div>
+        </div>
+        <div class="pending-note">📝 本受注（有償代行）後にこの工程へつながる具体フローは、別途追記予定</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CS -->
+  <div class="lane">
+    <div class="lane-head head-cs">CS（カスタマーサクセス）</div>
+    <div class="lane-body body-cs">
+
+      <div id="cs-spacer" style="height:0px;"></div>
+
+      <div class="box box-warn" id="cs1">
+        <h4>⚠ Ops連携 必須ポイント②（キャパ連携）</h4>
+        有償代行の可能性が出たタイミングでOpsに連携
+        <div class="small">※確度が低い場合でも共有してください</div>
+        <div class="pin-note">📌 週初に #ops_general で最新の工数状況・把握している案件一覧を共有しますので、ここで連携してください。漏れている案件がないかも確認してください</div>
+      </div>
+
+      <div class="box wf-cs" id="cs2">
+        <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf-btn">Slack WF（ボタン）</span></div>
+        <h4>⑥ 有償代行</h4>
+        <ul>
+          <li>有償代行が確定したタイミングで実施</li>
+          <li>FSの「A. p6キックオフ依頼」WF（共通）を発動 → サンプル対応 → 本受注、の流れで進行</li>
+          <li>「p6キックオフ依頼」ワークフロー内に設置されたボタンから有償代行を依頼する</li>
+        </ul>
+      </div>
+
+      <div class="box box-ops-plain" id="cs3" style="border-color:#d9c8f5;">
+        <div class="pending-note" style="margin-top:0;">📝 本受注（有償代行）後の具体的な納品フロー（⑦に相当）は、後日詳細を追記予定です</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+<p class="legend">※黒実線：通常工程の流れ／WFステップは破線枠で表記／📝マークは詳細未確定（追って更新予定）の項目</p>
+
+<script>
+function alignLanes(){
+  // reset spacers first so measurements start from a known baseline
+  const sp1 = document.getElementById('ops-spacer-1');
+  const sp2 = document.getElementById('ops-spacer-2');
+  const spCS = document.getElementById('cs-spacer');
+  sp1.style.height = '0px';
+  sp2.style.height = '0px';
+  spCS.style.height = '0px';
+
+  const board = document.getElementById('board');
+  function topY(id){ return document.getElementById(id).getBoundingClientRect().top - board.getBoundingClientRect().top; }
+  function bottomY(id){ return document.getElementById(id).getBoundingClientRect().bottom - board.getBoundingClientRect().top; }
+
+  // 1) Align ④（ops2）with A. p6キックオフ依頼（fs6a）so the arrow between them is short and unambiguous
+  const fs6aTop = topY('fs6a');
+  const ops2Top0 = topY('ops2');
+  sp1.style.height = Math.max(0, fs6aTop - ops2Top0) + 'px';
+
+  // 2) Push ⚠Ops連携必須ポイント②（cs1）to just below ⑤（ops3）
+  const ops3Bottom = bottomY('ops3');
+  const cs1Top0 = topY('cs1');
+  spCS.style.height = Math.max(0, (ops3Bottom + 40) - cs1Top0) + 'px';
+
+  // 3) Push ⑦（ops4）down to align with the relocated ⑥（cs2）
+  const cs2TopNew = topY('cs2');
+  const ops4Top0 = topY('ops4');
+  sp2.style.height = Math.max(0, cs2TopNew - ops4Top0) + 'px';
+}
+
+function drawConnectors(){
+  const svg = document.getElementById('connlayer');
+  while(svg.firstChild) svg.removeChild(svg.firstChild);
+
+  const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+  defs.innerHTML =
+    '<marker id="arrowBlack" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">'+
+      '<path d="M0,0 L8,4 L0,8 z" fill="#1f2937"/></marker>'+
+    '<marker id="arrowRed" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">'+
+      '<path d="M0,0 L8,4 L0,8 z" fill="#c23b22"/></marker>';
+  svg.appendChild(defs);
+
+  const board = document.getElementById('board');
+  const br = board.getBoundingClientRect();
+
+  function pt(id, side){
+    const el = document.getElementById(id);
+    const r = el.getBoundingClientRect();
+    const x0 = r.left - br.left, y0 = r.top - br.top, w = r.width, h = r.height;
+    if(side==='top') return {x:x0+w/2, y:y0};
+    if(side==='bottom') return {x:x0+w/2, y:y0+h};
+    if(side==='left') return {x:x0, y:y0+h/2};
+    if(side==='right') return {x:x0+w, y:y0+h/2};
+  }
+  function addPath(d, cls, marker){
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d', d);
+    p.setAttribute('class', 'arrow ' + cls);
+    p.setAttribute('marker-end', marker);
+    svg.appendChild(p);
+  }
+  function vert(fromId, toId){
+    const a = pt(fromId,'bottom'), b = pt(toId,'top');
+    addPath(`M ${a.x} ${a.y} L ${b.x} ${b.y}`, 'solid', 'url(#arrowBlack)');
+  }
+  function elbowH(fromId, toId, cls, marker){
+    const a = pt(fromId,'right'), b = pt(toId,'left');
+    const midX = (a.x + b.x)/2;
+    addPath(`M ${a.x} ${a.y} L ${midX} ${a.y} L ${midX} ${b.y} L ${b.x} ${b.y}`, cls, marker);
+  }
+  function elbowHrev(fromId, toId, cls, marker){
+    const a = pt(fromId,'left'), b = pt(toId,'right');
+    const midX = (a.x + b.x)/2;
+    addPath(`M ${a.x} ${a.y} L ${midX} ${a.y} L ${midX} ${b.y} L ${b.x} ${b.y}`, cls, marker);
+  }
+  function forkFrom(fromPt, toId){
+    const b = pt(toId,'top');
+    const midY = fromPt.y + 22;
+    addPath(`M ${fromPt.x} ${fromPt.y} L ${fromPt.x} ${midY} L ${b.x} ${midY} L ${b.x} ${b.y}`, 'solid', 'url(#arrowBlack)');
+  }
+  function elbowBottomGutter(fromId, toId, cls, marker, safeY){
+    const a = pt(fromId,'bottom');
+    const b = pt(toId,'left');
+    const gutterX = b.x - 20;
+    addPath(`M ${a.x} ${a.y} L ${a.x} ${safeY} L ${gutterX} ${safeY} L ${gutterX} ${b.y} L ${b.x} ${b.y}`, cls, marker);
+  }
+
+  elbowH('is1','fs1','solid','url(#arrowBlack)');
+  vert('fs1','fs2');
+  vert('fs2','fs3');
+  vert('fs3','fs4');
+  vert('fs4','fs5');
+
+  const dBottom = pt('fs5','bottom');
+  forkFrom(dBottom,'fs6a');
+  forkFrom(dBottom,'fs6b');
+
+  const safeY = Math.max(pt('fs6a','bottom').y, pt('fs6b','bottom').y) + 16;
+  elbowBottomGutter('fs6a','ops2','solid','url(#arrowBlack)', safeY);
+  elbowH('fs6b','ops3','solid','url(#arrowBlack)');
+  vert('ops2','ops3');
+
+  vert('cs1','cs2');
+  vert('cs2','cs3');
+  elbowHrev('cs2','ops4','solid','url(#arrowBlack)');
+}
+window.addEventListener('load', ()=>{ alignLanes(); drawConnectors(); });
+window.addEventListener('resize', ()=>{ alignLanes(); drawConnectors(); });
+</script>
+
+</body>
+</html>
