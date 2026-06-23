@@ -55,6 +55,8 @@
   .box h4{margin:0 0 6px; font-size:13.5px; font-weight:800;}
   .box ul{margin:4px 0 0; padding-left:17px;}
   .box li{margin-bottom:3px;}
+  .box a{color:#2563eb; text-decoration:underline; font-weight:700;}
+  .box a:hover{color:#1d4ed8;}
   .box .lead{font-weight:800; font-size:12.5px; margin:2px 0 4px;}
   .box .lead.muted{color:var(--sub); font-weight:700;}
   .box .small{font-size:11.5px; color:var(--sub); margin-top:4px;}
@@ -134,8 +136,8 @@
         <h4>受注前条件確認</h4>
         <div class="lead">【必須連携】工数反映のため、以下は必ず早い段階で申請</div>
         <ul>
-          <li>スポット作業依頼（例：エレマックス案件）</li>
-          <li>スポットの探索代行作業（例：中電工）</li>
+          <li>スポット作業依頼（例：<a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1781056300688939" target="_blank" rel="noopener noreferrer">エレマックス案件</a>）</li>
+          <li>スポットの探索代行作業（例：<a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1780552101422599" target="_blank" rel="noopener noreferrer">旭化成ホームズ</a>）</li>
           <li>初月から有償探索代行が発生する可能性のある案件が発足した時</li>
         </ul>
         <div class="small">※いずれも話が上がった早い段階（納期まで3週間確保できるタイミング）で申請してください</div>
@@ -156,6 +158,7 @@
         <ul>
           <li>商談で見せる実例サンプルを依頼</li>
           <li>30分で対応できるボリュームに限定</li>
+          <li>見積もり用の工数確認</li>
         </ul>
       </div>
 
@@ -235,9 +238,11 @@
         </ul>
         <div class="subbox-row">
           <div class="subbox">◇条件合致：クライアント環境へインポート</div>
-          <div class="subbox">◇条件不一致：CSV／カスタム項目に○×でレポート</div>
+          <div class="subbox">◇条件不一致：CSVでレポート
+            <div style="margin-top:4px; font-size:11px; color:var(--sub);">┗必要チェック項目のうちどこがクリアしていてどこがクリアしていないのかがわかるデータ</div>
+          </div>
         </div>
-        <div class="small">※有償代行（A：AI探索／B：セルフ探索）からの本受注後の納品はここに合流</div>
+        <div class="small">※セルフ探索の場合は、条件に一致するもののみを納品</div>
       </div>
 
     </div>
@@ -298,6 +303,7 @@
             <h4>B. セルフ探索</h4>
             <ul>
               <li>クライアントの要望をもとに100件の対象地をピックアップ（固定20万円で受注）</li>
+              <li>探索マニュアル納品（自社で運用してもらえるよう促す）</li>
             </ul>
             <div class="divider"></div>
             <div class="lead muted">（サンプル固定費用の参考イメージ）</div>
