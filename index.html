@@ -106,6 +106,17 @@
   .dashedred{stroke:var(--warn); stroke-dasharray:6 5;}
   .lightdash{stroke:#aab1b9; stroke-width:1.3; stroke-dasharray:2 4;}
 
+  .assignee-row{display:flex; gap:5px; flex-wrap:wrap; margin-top:5px;}
+  .chip-assignee{display:inline-flex; align-items:center; gap:4px; font-size:10.3px; font-weight:700; padding:2px 7px; border-radius:9px; background:#eef1f4; color:#3a4450; white-space:nowrap;}
+  .dot{width:6px; height:6px; border-radius:50%; display:inline-block; flex:none;}
+  .dot-re{background:#16a34a;}
+  .dot-est{background:#2563eb;}
+  .dot-roof{background:#d97706;}
+  .dot-other{background:#6b7280;}
+
+  .required-badge{display:inline-flex; align-items:center; gap:5px; background:var(--warn); color:#fff; font-weight:800; font-size:12px; padding:4px 11px; border-radius:7px; margin-bottom:8px;}
+  .required-block{border:1.5px solid #f3b3a6; background:#fdf2f0; border-radius:9px; padding:10px 12px 4px;}
+  .required-block ul{margin-top:0;}
   .legend{max-width:1360px; margin-top:14px; font-size:11.8px; color:var(--sub);}
 </style>
 </head>
@@ -140,21 +151,30 @@
       <div class="box wf-fs" id="fs2">
         <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf">Slack WF</span></div>
         <h4>受注前条件確認</h4>
-        <div class="lead">【必須連携】工数反映のため、以下は必ず早い段階で申請</div>
+        <div class="required-badge">🚨 連携必須</div>
+        <div class="small" style="margin:-2px 0 6px;">工数反映のため、以下は必ず早い段階で申請</div>
+        <div class="required-block">
         <ul>
-          <li>スポット作業依頼（例：<a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1781056300688939" target="_blank" rel="noopener noreferrer">エレマックス案件</a>）</li>
-          <li>スポットの探索代行作業（例：<a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1780552101422599" target="_blank" rel="noopener noreferrer">旭化成ホームズ</a>）</li>
+          <li>スポット作業依頼（例：<a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1781056300688939" target="_blank" rel="noopener noreferrer">エレマックス案件</a>）
+            <div class="assignee-row"><span class="chip-assignee"><span class="dot dot-other"></span>小林(香)</span></div>
+          </li>
+          <li>スポットの探索代行作業（例：<a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1780552101422599" target="_blank" rel="noopener noreferrer">旭化成ホームズ</a>）
+            <div class="assignee-row">
+              <span class="chip-assignee"><span class="dot dot-re"></span>再エネ：石川</span>
+              <span class="chip-assignee"><span class="dot dot-est"></span>不動産：菊地</span>
+              <span class="chip-assignee"><span class="dot dot-roof"></span>屋根：矢野</span>
+            </div>
+          </li>
           <li id="fs2-item-paid">初月から有償探索代行が発生する可能性のある案件が発足した時</li>
         </ul>
-        <div class="small">※いずれも話が上がった早い段階（納期まで3週間確保できるタイミング）で申請してください</div>
-        <div class="small">※確度が低い場合でも連携ください（確度に応じて工数を確保しておきます）</div>
+        </div>
+        <div class="small">※早い段階（納期まで3週間確保できるタイミング）で、確度が低くても連携OK（確度に応じて工数確保）</div>
         <div class="divider"></div>
-        <div class="lead muted">（必須ではない使い方の例）</div>
-        <ul>
-          <li>「こういう条件で探したい」などのクライアントの要望に対して、対応可否の問い合わせ</li>
-        </ul>
-        <div class="caution">⚠ 受注前条件確認が出ていないスポット作業は工数を確保できないため、希望通りの期日で対応できない可能性があります</div>
-        <div class="pin-note">📌 週初に #ops_general で最新の工数状況・把握している案件一覧を共有します。漏れている案件がないか確認してください</div>
+        <div class="small">（非必須）「こういう条件で探したい」等の対応可否問い合わせ
+          <div class="assignee-row"><span class="chip-assignee"><span class="dot dot-other"></span>矢野</span></div>
+        </div>
+        <div class="caution">⚠ 条件確認のないスポット作業は工数未確保のため、希望期日に対応できない可能性あり</div>
+        <div class="pin-note">📌 週初に #ops_general で工数状況・案件一覧を共有（漏れがないか確認してください）</div>
       </div>
 
       <div class="box wf-fs" id="fs3">
@@ -166,6 +186,11 @@
           <li>30分で対応できるボリュームに限定</li>
           <li>見積もり用の工数確認</li>
         </ul>
+        <div class="assignee-row">
+          <span class="chip-assignee"><span class="dot dot-re"></span>再エネ：石川</span>
+          <span class="chip-assignee"><span class="dot dot-est"></span>不動産：菊地</span>
+          <span class="chip-assignee"><span class="dot dot-roof"></span>屋根：矢野</span>
+        </div>
       </div>
 
       <div class="box plain-center box-fs-plain" id="fs4">③ 受注</div>
@@ -184,6 +209,11 @@
             <ul>
               <li>このWF内で初期セットアップ（④）の要否も明記</li>
             </ul>
+            <div class="assignee-row">
+              <span class="chip-assignee"><span class="dot dot-re"></span>再エネ：石川</span>
+              <span class="chip-assignee"><span class="dot dot-est"></span>不動産：菊地</span>
+              <span class="chip-assignee"><span class="dot dot-roof"></span>屋根：矢野</span>
+            </div>
             <div class="small">※CSの有償代行依頼（⑥）発生時もこのWFを共通で使用</div>
           </div>
         </div>
@@ -280,6 +310,11 @@
           <li>「p6キックオフ依頼」ワークフロー内に設置されたボタンから有償代行を依頼する</li>
           <li>以降の流れは下記（A：AI探索／B：セルフ探索）の通り</li>
         </ul>
+        <div class="assignee-row">
+          <span class="chip-assignee"><span class="dot dot-re"></span>再エネ：石川</span>
+          <span class="chip-assignee"><span class="dot dot-est"></span>不動産：菊地</span>
+          <span class="chip-assignee"><span class="dot dot-roof"></span>屋根：矢野</span>
+        </div>
       </div>
 
       <div class="diamond-wrap" id="cs-diamond">
@@ -484,8 +519,7 @@ function drawConnectors(){
   elbowH('fs3','ops-sample','solid','url(#arrowBlack)');
   vert('fs3','fs4');
   vert('fs4','fs5');
-  vert('ops-cond','ops-sample');
-
+  
   const dBottom = pt('fs5','bottom');
   forkFrom(dBottom,'fs6a');
   forkFrom(dBottom,'fs6b');
