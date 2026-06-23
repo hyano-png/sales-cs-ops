@@ -82,10 +82,14 @@
 
   .diamond-wrap{position:relative; height:108px; display:flex; align-items:center; justify-content:center;}
   .diamond{width:64px; height:64px; border:2px solid var(--fs); background:#fff; transform:rotate(45deg);}
+  .diamond.diamond-cs{border-color:var(--cs);}
   .diamond-label{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; font-size:12.5px; font-weight:800; color:var(--fs); padding:0 8px; white-space:nowrap;}
+  .diamond-label.label-cs{color:var(--cs);}
 
   .fork-chip{display:inline-block; font-size:11px; font-weight:800; color:var(--fs); background:#d8f3ec; padding:2px 9px; border-radius:10px; margin-bottom:9px;}
+  .fork-chip.chip-cs{color:var(--cs); background:#ece3fb;}
   .fork-row{display:flex; gap:10px;}
+  .box-cs-plain{border-color:#d9c8f5;}
   .fork-row > div{flex:1; display:flex; flex-direction:column;}
 
   .subbox-row{display:flex; gap:8px; margin-top:8px;}
@@ -194,6 +198,20 @@
     <div class="lane-head head-ops">Ops（オペレーション）</div>
     <div class="lane-body body-ops">
 
+      <div id="ops-spacer-cond" style="height:0px;"></div>
+
+      <div class="box box-ops-plain" id="ops-cond">
+        <h4>条件確認（＝工数確保）</h4>
+        受注前条件確認の内容をもとに、Ops側で実際に条件確認（＝工数確保）を実施
+      </div>
+
+      <div id="ops-spacer-sample" style="height:0px;"></div>
+
+      <div class="box box-ops-plain" id="ops-sample">
+        <h4>受注前サンプル作成</h4>
+        受注前サンプル依頼の内容をもとに、Ops側でサンプルを作成
+      </div>
+
       <div id="ops-spacer-1" style="height:0px;"></div>
 
       <div class="box box-ops-plain" id="ops2">
@@ -219,7 +237,7 @@
           <div class="subbox">◇条件合致：クライアント環境へインポート</div>
           <div class="subbox">◇条件不一致：CSV／カスタム項目に○×でレポート</div>
         </div>
-        <div class="pending-note">📝 本受注（有償代行）後にこの工程へつながる具体フローは、別途追記予定</div>
+        <div class="small">※有償代行（A：AI探索／B：セルフ探索）からの本受注後の納品はここに合流</div>
       </div>
 
     </div>
@@ -244,13 +262,65 @@
         <h4>⑥ 有償代行</h4>
         <ul>
           <li>有償代行が確定したタイミングで実施</li>
-          <li>FSの「A. p6キックオフ依頼」WF（共通）を発動 → サンプル対応 → 本受注、の流れで進行</li>
           <li>「p6キックオフ依頼」ワークフロー内に設置されたボタンから有償代行を依頼する</li>
+          <li>以降の流れは下記（A：AI探索／B：セルフ探索）の通り</li>
         </ul>
       </div>
 
-      <div class="box box-ops-plain" id="cs3" style="border-color:#d9c8f5;">
-        <div class="pending-note" style="margin-top:0;">📝 本受注（有償代行）後の具体的な納品フロー（⑦に相当）は、後日詳細を追記予定です</div>
+      <div class="diamond-wrap" id="cs-diamond">
+        <div class="diamond diamond-cs"></div>
+        <div class="diamond-label label-cs">AI探索 / セルフ探索</div>
+      </div>
+
+      <div class="fork-row">
+        <div>
+          <div class="box box-cs-plain" id="csA">
+            <div class="fork-chip chip-cs">A：AI探索</div>
+            <h4>A. AI探索</h4>
+            <ul>
+              <li>クライアントの要望をもとに1000件のスクリーニング確認（固定5万円で受注）</li>
+            </ul>
+            <div class="divider"></div>
+            <div class="lead muted">（サンプル固定費用の参考イメージ）</div>
+            <div class="small">売値1時間：¥3,000（＝1分50円）で計算 → 16.5時間で1000件のスクリーニングが目安</div>
+            <div class="small">※スクリーニング1件あたり1分（≒50円）目安で対応できるとgood</div>
+            <div class="small">※赤字になる可能性もあるが固定で実施</div>
+            <div class="lead muted" style="margin-top:8px;">▼確認するべき数字</div>
+            <ul>
+              <li>1件あたりのスクリーニング時間（総稼働時間／1000）</li>
+              <li>1000件見た上で対象条件に合致する率（リスト追加率）</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="box box-cs-plain" id="csB">
+            <div class="fork-chip chip-cs">B：セルフ探索</div>
+            <h4>B. セルフ探索</h4>
+            <ul>
+              <li>クライアントの要望をもとに100件の対象地をピックアップ（固定20万円で受注）</li>
+            </ul>
+            <div class="divider"></div>
+            <div class="lead muted">（サンプル固定費用の参考イメージ）</div>
+            <div class="small">売値1時間：¥3,000（＝1分50円）で計算 → 66.5時間で100件の対象地ピックアップが目安</div>
+            <div class="small">※対象土地を見つけるのに1件あたり40分（≒2,000円）目安で対応できるとgood</div>
+            <div class="small">※赤字になる可能性もあるが固定で実施</div>
+            <div class="lead muted" style="margin-top:8px;">▼確認するべき数字</div>
+            <ul>
+              <li>100件見つけるにあたり何件スクリーニングしたか（リスト追加率）</li>
+              <li>1件あたりのスクリーニング時間（総稼働時間／スクリーニング件数）</li>
+              <li>対象土地を1件見つけるのにかかった時間（総稼働時間／100）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="box box-cs-plain" id="cs-honjuchu">
+        <h4>本受注（有償代行）</h4>
+        <ul>
+          <li>リスト追加率・作業工数を判定し本受注へ</li>
+        </ul>
+        <div class="small">※過去に同様の条件で受注した履歴がある場合は、そのデータを転用してOK</div>
+        <div class="small">※その場合、エリアの違いは加味しない</div>
       </div>
 
     </div>
@@ -264,9 +334,13 @@
 <script>
 function alignLanes(){
   // reset spacers first so measurements start from a known baseline
+  const spCond = document.getElementById('ops-spacer-cond');
+  const spSample = document.getElementById('ops-spacer-sample');
   const sp1 = document.getElementById('ops-spacer-1');
   const sp2 = document.getElementById('ops-spacer-2');
   const spCS = document.getElementById('cs-spacer');
+  spCond.style.height = '0px';
+  spSample.style.height = '0px';
   sp1.style.height = '0px';
   sp2.style.height = '0px';
   spCS.style.height = '0px';
@@ -274,6 +348,16 @@ function alignLanes(){
   const board = document.getElementById('board');
   function topY(id){ return document.getElementById(id).getBoundingClientRect().top - board.getBoundingClientRect().top; }
   function bottomY(id){ return document.getElementById(id).getBoundingClientRect().bottom - board.getBoundingClientRect().top; }
+
+  // 0a) Align 条件確認（＝工数確保）with 受注前条件確認（fs2）
+  const fs2Top = topY('fs2');
+  const opsCondTop0 = topY('ops-cond');
+  spCond.style.height = Math.max(0, fs2Top - opsCondTop0) + 'px';
+
+  // 0b) Align 受注前サンプル作成 with 受注前サンプル依頼（fs3）
+  const fs3Top = topY('fs3');
+  const opsSampleTop0 = topY('ops-sample');
+  spSample.style.height = Math.max(0, fs3Top - opsSampleTop0) + 'px';
 
   // 1) Align ④（ops2）with A. p6キックオフ依頼（fs6a）so the arrow between them is short and unambiguous
   const fs6aTop = topY('fs6a');
@@ -285,10 +369,10 @@ function alignLanes(){
   const cs1Top0 = topY('cs1');
   spCS.style.height = Math.max(0, (ops3Bottom + 40) - cs1Top0) + 'px';
 
-  // 3) Push ⑦（ops4）down to align with the relocated ⑥（cs2）
-  const cs2TopNew = topY('cs2');
+  // 3) Push ⑦（ops4）down to align with 本受注（有償代行）, the actual step that precedes it
+  const honjuchuTopNew = topY('cs-honjuchu');
   const ops4Top0 = topY('ops4');
-  sp2.style.height = Math.max(0, cs2TopNew - ops4Top0) + 'px';
+  sp2.style.height = Math.max(0, honjuchuTopNew - ops4Top0) + 'px';
 }
 
 function drawConnectors(){
@@ -347,12 +431,23 @@ function drawConnectors(){
     const gutterX = b.x - 20;
     addPath(`M ${a.x} ${a.y} L ${a.x} ${safeY} L ${gutterX} ${safeY} L ${gutterX} ${b.y} L ${b.x} ${b.y}`, cls, marker);
   }
+  function convergeTo(fromIds, toId){
+    const b = pt(toId,'top');
+    const midY = b.y - 22;
+    fromIds.forEach(id => {
+      const a = pt(id,'bottom');
+      addPath(`M ${a.x} ${a.y} L ${a.x} ${midY} L ${b.x} ${midY} L ${b.x} ${b.y}`, 'solid', 'url(#arrowBlack)');
+    });
+  }
 
   elbowH('is1','fs1','solid','url(#arrowBlack)');
   vert('fs1','fs2');
+  elbowH('fs2','ops-cond','solid','url(#arrowBlack)');
   vert('fs2','fs3');
+  elbowH('fs3','ops-sample','solid','url(#arrowBlack)');
   vert('fs3','fs4');
   vert('fs4','fs5');
+  vert('ops-cond','ops-sample');
 
   const dBottom = pt('fs5','bottom');
   forkFrom(dBottom,'fs6a');
@@ -364,8 +459,12 @@ function drawConnectors(){
   vert('ops2','ops3');
 
   vert('cs1','cs2');
-  vert('cs2','cs3');
-  elbowHrev('cs2','ops4','solid','url(#arrowBlack)');
+  vert('cs2','cs-diamond');
+  const csDBottom = pt('cs-diamond','bottom');
+  forkFrom(csDBottom,'csA');
+  forkFrom(csDBottom,'csB');
+  convergeTo(['csA','csB'],'cs-honjuchu');
+  elbowHrev('cs-honjuchu','ops4','solid','url(#arrowBlack)');
 }
 window.addEventListener('load', ()=>{ alignLanes(); drawConnectors(); });
 window.addEventListener('resize', ()=>{ alignLanes(); drawConnectors(); });
