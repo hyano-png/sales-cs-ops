@@ -115,15 +115,27 @@
   .dot-other{background:#6b7280;}
 
   .required-badge{display:inline-flex; align-items:center; gap:5px; background:var(--warn); color:#fff; font-weight:800; font-size:12px; padding:4px 11px; border-radius:7px; margin-bottom:8px;}
-  .required-block{border:1.5px solid #f3b3a6; background:#fdf2f0; border-radius:9px; padding:10px 12px 4px;}
-  .required-block ul{margin-top:0;}
+  .required-block{border:1.5px solid #f3b3a6; background:#fdf2f0; border-radius:9px; padding:10px;}
+  .req-item{background:#fff; border:1px solid #f0c4ba; border-radius:9px; padding:10px 12px; margin-bottom:8px; box-shadow:0 1px 2px rgba(0,0,0,.05);}
+  .req-item:last-child{margin-bottom:0;}
+  .req-title{display:flex; align-items:center; font-weight:800; font-size:12.8px;}
+  .req-num{display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; min-width:18px; border-radius:50%; background:var(--warn); color:#fff; font-size:11px; font-weight:800; margin-right:7px;}
+  .req-example{font-size:12px; color:var(--sub); margin:4px 0 6px 25px;}
+
+  .optional-badge{display:inline-flex; background:#6b7280; color:#fff; font-weight:800; font-size:10.5px; padding:2px 8px; border-radius:6px; margin-bottom:4px;}
+
+  .box details{margin-top:8px;}
+  .box summary{cursor:pointer; font-size:11.5px; font-weight:700; color:var(--sub); list-style:none; outline:none;}
+  .box summary::-webkit-details-marker{display:none;}
+  .box summary:before{content:"▶ "; font-size:9px;}
+  .box details[open] summary:before{content:"▼ ";}
+  .box details[open] summary{margin-bottom:6px;}
   .legend{max-width:1360px; margin-top:14px; font-size:11.8px; color:var(--sub);}
 </style>
 </head>
 <body>
 
 <p class="page-title">セールス〜CS 業務フロー（更新版）</p>
-<p class="page-sub">更新日：2026/06/22　※CS「有償代行」検知後の具体的な納品フローは別途詳細化予定です</p>
 
 <div class="scroll-wrap">
 <div class="board" id="board">
@@ -154,23 +166,28 @@
         <div class="required-badge">🚨 連携必須</div>
         <div class="small" style="margin:-2px 0 6px;">工数反映のため、以下は必ず早い段階で申請</div>
         <div class="required-block">
-        <ul>
-          <li>スポット作業依頼（例：<a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1781056300688939" target="_blank" rel="noopener noreferrer">エレマックス案件</a>）
-            <div class="assignee-row"><span class="chip-assignee"><span class="dot dot-other"></span>小林(香)</span></div>
-          </li>
-          <li>スポットの探索代行作業（例：<a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1780552101422599" target="_blank" rel="noopener noreferrer">旭化成ホームズ</a>）
-            <div class="assignee-row">
-              <span class="chip-assignee"><span class="dot dot-re"></span>再エネ：石川</span>
-              <span class="chip-assignee"><span class="dot dot-est"></span>不動産：菊地</span>
-              <span class="chip-assignee"><span class="dot dot-roof"></span>屋根：矢野</span>
-            </div>
-          </li>
-          <li id="fs2-item-paid">初月から有償探索代行が発生する可能性のある案件が発足した時</li>
-        </ul>
+        <div class="req-item">
+          <div class="req-title"><span class="req-num">1</span>スポット案件</div>
+          <div class="req-example">┗ <a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1781056300688939" target="_blank" rel="noopener noreferrer">エレマックス</a>等</div>
+          <div class="assignee-row"><span class="chip-assignee"><span class="dot dot-other"></span>小林(香)</span></div>
+        </div>
+        <div class="req-item">
+          <div class="req-title"><span class="req-num">2</span>スポットの探索代行案件</div>
+          <div class="req-example">┗ <a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1780552101422599" target="_blank" rel="noopener noreferrer">旭化成ホームズ</a>等</div>
+          <div class="assignee-row">
+            <span class="chip-assignee"><span class="dot dot-re"></span>再エネ：石川</span>
+            <span class="chip-assignee"><span class="dot dot-est"></span>不動産：菊地</span>
+            <span class="chip-assignee"><span class="dot dot-roof"></span>屋根：矢野</span>
+          </div>
+        </div>
+        <div class="req-item" id="fs2-item-paid">
+          <div class="req-title"><span class="req-num">3</span>初月から有償探索代行が発生する可能性のある案件が発足した時</div>
+        </div>
         </div>
         <div class="small">※早い段階（納期まで3週間確保できるタイミング）で、確度が低くても連携OK（確度に応じて工数確保）</div>
         <div class="divider"></div>
-        <div class="small">（非必須）「こういう条件で探したい」等の対応可否問い合わせ
+        <div class="optional-badge">任意</div>
+        <div class="small" style="margin-top:0;">「こういう条件で探したい」等の対応可否問い合わせ
           <div class="assignee-row"><span class="chip-assignee"><span class="dot dot-other"></span>矢野</span></div>
         </div>
         <div class="caution">⚠ 条件確認のないスポット作業は工数未確保のため、希望期日に対応できない可能性あり</div>
@@ -180,7 +197,8 @@
       <div class="box wf-fs" id="fs3">
         <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf">Slack WF</span></div>
         <h4>受注前サンプル依頼</h4>
-        <div class="small">※必要な場合のみ実施</div>
+        <div class="optional-badge">任意</div>
+        <div class="small" style="margin-top:0;">必要な場合のみ実施</div>
         <ul>
           <li>商談で見せる実例サンプルを依頼</li>
           <li>30分で対応できるボリュームに限定</li>
@@ -330,16 +348,18 @@
             <ul>
               <li>クライアントの要望をもとに1000件のスクリーニング確認（固定5万円で受注）</li>
             </ul>
-            <div class="divider"></div>
-            <div class="lead muted">（サンプル固定費用の参考イメージ）</div>
-            <div class="small">売値1時間：¥3,000（＝1分50円）で計算 → 16.5時間で1000件のスクリーニングが目安</div>
-            <div class="small">※スクリーニング1件あたり1分（≒50円）目安で対応できるとgood</div>
-            <div class="small">※赤字になる可能性もあるが固定で実施</div>
-            <div class="lead muted" style="margin-top:8px;">▼確認するべき数字</div>
-            <ul>
-              <li>1件あたりのスクリーニング時間（総稼働時間／1000）</li>
-              <li>1000件見た上で対象条件に合致する率（リスト追加率）</li>
-            </ul>
+            <details>
+              <summary>算出根拠・確認すべき数字</summary>
+              <div class="lead muted">（サンプル固定費用の参考イメージ）</div>
+              <div class="small">売値1時間：¥3,000（＝1分50円）で計算 → 16.5時間で1000件のスクリーニングが目安</div>
+              <div class="small">※スクリーニング1件あたり1分（≒50円）目安で対応できるとgood</div>
+              <div class="small">※赤字になる可能性もあるが固定で実施</div>
+              <div class="lead muted" style="margin-top:8px;">▼確認するべき数字</div>
+              <ul>
+                <li>1件あたりのスクリーニング時間（総稼働時間／1000）</li>
+                <li>1000件見た上で対象条件に合致する率（リスト追加率）</li>
+              </ul>
+            </details>
           </div>
         </div>
         <div>
@@ -350,17 +370,19 @@
               <li>クライアントの要望をもとに100件の対象地をピックアップ（固定20万円で受注）</li>
               <li>探索マニュアル納品（自社で運用してもらえるよう促す）</li>
             </ul>
-            <div class="divider"></div>
-            <div class="lead muted">（サンプル固定費用の参考イメージ）</div>
-            <div class="small">売値1時間：¥3,000（＝1分50円）で計算 → 66.5時間で100件の対象地ピックアップが目安</div>
-            <div class="small">※対象土地を見つけるのに1件あたり40分（≒2,000円）目安で対応できるとgood</div>
-            <div class="small">※赤字になる可能性もあるが固定で実施</div>
-            <div class="lead muted" style="margin-top:8px;">▼確認するべき数字</div>
-            <ul>
-              <li>100件見つけるにあたり何件スクリーニングしたか（リスト追加率）</li>
-              <li>1件あたりのスクリーニング時間（総稼働時間／スクリーニング件数）</li>
-              <li>対象土地を1件見つけるのにかかった時間（総稼働時間／100）</li>
-            </ul>
+            <details>
+              <summary>算出根拠・確認すべき数字</summary>
+              <div class="lead muted">（サンプル固定費用の参考イメージ）</div>
+              <div class="small">売値1時間：¥3,000（＝1分50円）で計算 → 66.5時間で100件の対象地ピックアップが目安</div>
+              <div class="small">※対象土地を見つけるのに1件あたり40分（≒2,000円）目安で対応できるとgood</div>
+              <div class="small">※赤字になる可能性もあるが固定で実施</div>
+              <div class="lead muted" style="margin-top:8px;">▼確認するべき数字</div>
+              <ul>
+                <li>100件見つけるにあたり何件スクリーニングしたか（リスト追加率）</li>
+                <li>1件あたりのスクリーニング時間（総稼働時間／スクリーニング件数）</li>
+                <li>対象土地を1件見つけるのにかかった時間（総稼働時間／100）</li>
+              </ul>
+            </details>
           </div>
         </div>
       </div>
@@ -381,7 +403,7 @@
 </div>
 </div>
 
-<p class="legend">※黒実線：通常工程の流れ／WFステップは破線枠で表記／📝マークは詳細未確定（追って更新予定）の項目</p>
+<p class="legend">※黒実線：通常工程の流れ／グレー点線：早い段階での緩やかな関連（厳密な手順ではない）／WFステップは破線枠で表記／📝マークは詳細未確定（追って更新予定）の項目</p>
 
 <script>
 function alignLanes(){
@@ -539,7 +561,12 @@ function drawConnectors(){
 
   elbowViaRail('fs2-item-paid','cs2','lightdash','url(#arrowGray)','gutter-fs-ops','gutter-ops-cs');
 }
-window.addEventListener('load', ()=>{ alignLanes(); drawConnectors(); });
+window.addEventListener('load', ()=>{
+  alignLanes(); drawConnectors();
+  document.querySelectorAll('.box details').forEach(d => {
+    d.addEventListener('toggle', () => { alignLanes(); drawConnectors(); });
+  });
+});
 window.addEventListener('resize', ()=>{ alignLanes(); drawConnectors(); });
 </script>
 
