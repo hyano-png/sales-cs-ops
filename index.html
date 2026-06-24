@@ -62,7 +62,7 @@
   .box a:hover{color:#1d4ed8;}
   .box .lead{font-weight:800; font-size:12.5px; margin:2px 0 4px;}
   .box .lead.muted{color:var(--sub); font-weight:700;}
-  .box .small{font-size:11.5px; color:var(--sub); margin-top:4px;}
+  .box .small, .safe-caption .small{font-size:11.5px; color:var(--sub); margin-top:4px;}
   .box .divider{border-top:1px dashed #dfe3e7; margin:10px 0;}
 
   .box.plain-center{display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; min-height:48px;}
@@ -105,6 +105,7 @@
   .solid{stroke:#1f2937;}
   .dashedred{stroke:var(--warn); stroke-dasharray:6 5;}
   .lightdash{stroke:#aab1b9; stroke-width:1.3; stroke-dasharray:2 4;}
+  .redsolid{stroke:#e0432e; stroke-width:2.3;}
 
   .assignee-row{display:flex; gap:5px; flex-wrap:wrap; margin-top:5px;}
   .chip-assignee{display:inline-flex; align-items:center; gap:4px; font-size:10.3px; font-weight:700; padding:2px 7px; border-radius:9px; background:#eef1f4; color:#3a4450; white-space:nowrap;}
@@ -130,6 +131,7 @@
   .box summary:before{content:"▶ "; font-size:9px;}
   .box details[open] summary:before{content:"▼ ";}
   .box details[open] summary{margin-bottom:6px;}
+  .safe-caption{position:relative; background:var(--cs-bg); padding:3px 6px; border-radius:6px; text-align:center;}
   .legend{max-width:1360px; margin-top:14px; font-size:11.8px; color:var(--sub);}
 </style>
 </head>
@@ -162,7 +164,7 @@
 
       <div class="box wf-fs" id="fs2">
         <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf">Slack WF</span></div>
-        <h4>受注前条件確認</h4>
+        <h4><a href="https://slack.com/shortcuts/Ft0AUDD8B7D4/1e9e4c8183ad2ed196f39a8c1e42bd30" target="_blank" rel="noopener noreferrer">受注前条件確認</a></h4>
         <div class="required-badge">🚨 連携必須</div>
         <div class="small" style="margin:-2px 0 6px;">工数反映のため、以下は必ず早い段階で申請</div>
         <div class="required-block">
@@ -196,7 +198,7 @@
 
       <div class="box wf-fs" id="fs3">
         <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf">Slack WF</span></div>
-        <h4>受注前サンプル依頼</h4>
+        <h4><a href="https://slack.com/shortcuts/Ft0AV5F8CWFK/bd5980b85c5c40c099e8cd578373e846" target="_blank" rel="noopener noreferrer">受注前サンプル依頼</a></h4>
         <div class="optional-badge">任意</div>
         <div class="small" style="margin-top:0;">必要な場合のみ実施</div>
         <ul>
@@ -223,7 +225,7 @@
           <div class="box wf-fs" id="fs6a">
             <div class="fork-chip">A：通常案件</div>
             <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf">Slack WF</span></div>
-            <h4>A. p6キックオフ依頼</h4>
+            <h4>A. <a href="https://slack.com/shortcuts/Ft09QVEA9T97/55b41eb2a5ad6d736aa762f05c5c6a30" target="_blank" rel="noopener noreferrer">p6キックオフ依頼</a></h4>
             <ul>
               <li>このWF内で初期セットアップ（④）の要否も明記</li>
             </ul>
@@ -284,6 +286,22 @@
         <div class="small">※スポット案件（B）は④を経由せず直接ここに合流</div>
       </div>
 
+      <div id="ops-spacer-paidsample" style="height:0px;"></div>
+
+      <div class="box box-ops-plain" id="ops-paidsample">
+        <h4>サンプル作成（有償代行）</h4>
+        <ul>
+          <li>「サンプル依頼」の内容（A：AI探索／B：セルフ探索）をもとに、Ops側でサンプルを作成しクライアント環境に納品</li>
+          <li>スプレッドシートの必要数値を埋めた状態でCSに連携</li>
+        </ul>
+        <div class="small">※サンプル対応不要の場合はこの工程をスキップ</div>
+        <div class="assignee-row">
+          <span class="chip-assignee"><span class="dot dot-re"></span>再エネ：石川</span>
+          <span class="chip-assignee"><span class="dot dot-est"></span>不動産：菊地</span>
+          <span class="chip-assignee"><span class="dot dot-roof"></span>屋根：矢野</span>
+        </div>
+      </div>
+
       <div id="ops-spacer-2" style="height:0px;"></div>
 
       <div class="box box-ops-plain" id="ops4">
@@ -335,12 +353,9 @@
         </div>
       </div>
 
-      <div class="lead" style="color:var(--cs); margin-top:4px;">▼ サンプル依頼</div>
-      <div class="small">※探索条件の共有は「条件チェックシート」でやり取り（FMT作成中）</div>
-
-      <div class="diamond-wrap" id="cs-diamond">
-        <div class="diamond diamond-cs"></div>
-        <div class="diamond-label label-cs">AI探索 / セルフ探索</div>
+      <div class="safe-caption">
+        <div class="lead" style="color:var(--cs); margin:0;">▼ サンプル依頼</div>
+        <div class="small" style="margin-top:4px;">※探索条件の共有は「<a href="https://docs.google.com/spreadsheets/d/1rBBV9xB1CRin8WI4k5K411orzEB8G6KLImwOy8h5Nos/edit?gid=1796157664#gid=1796157664" target="_blank" rel="noopener noreferrer">条件チェックシート</a>」でやり取り。カテゴリ（再エネ／不動産／屋根）ごとにFMTをコピーして使用</div>
       </div>
 
       <div class="fork-row">
@@ -394,10 +409,12 @@
         </div>
       </div>
 
+      <div style="height:26px;"></div>
+
       <div class="box box-cs-plain" id="cs-honjuchu">
-        <h4>本受注（有償代行）</h4>
+        <h4>本依頼（有償代行）</h4>
         <ul>
-          <li>リスト追加率・作業工数を判定し本受注へ</li>
+          <li>リスト追加率・作業工数を判定し本依頼へ</li>
         </ul>
         <div class="small">※サンプル対応の有無にかかわらず、WF内の「本依頼へ進む(CS)」ボタンから申請</div>
       </div>
@@ -418,11 +435,13 @@ function alignLanes(){
   const spSample = document.getElementById('ops-spacer-sample');
   const sp1 = document.getElementById('ops-spacer-1');
   const sp2 = document.getElementById('ops-spacer-2');
+  const spPS = document.getElementById('ops-spacer-paidsample');
   const spCS = document.getElementById('cs-spacer');
   spCond.style.height = '0px';
   spSample.style.height = '0px';
   sp1.style.height = '0px';
   sp2.style.height = '0px';
+  spPS.style.height = '0px';
   spCS.style.height = '0px';
 
   const board = document.getElementById('board');
@@ -449,7 +468,15 @@ function alignLanes(){
   const cs1Top0 = topY('cs1');
   spCS.style.height = Math.max(0, (ops3Bottom + 40) - cs1Top0) + 'px';
 
-  // 3) Push ⑦（ops4）down to align with 本受注（有償代行）, the actual step that precedes it
+  // 2b) Position サンプル作成（有償代行）between the A/B fork（サンプル依頼）and 本依頼
+  const forkBottom = Math.max(bottomY('csA'), bottomY('csB'));
+  const honjuchuTop = topY('cs-honjuchu');
+  const psHeight = document.getElementById('ops-paidsample').getBoundingClientRect().height;
+  const desiredCenter = (forkBottom + honjuchuTop) / 2;
+  const psTop0 = topY('ops-paidsample');
+  spPS.style.height = Math.max(0, (desiredCenter - psHeight/2) - psTop0) + 'px';
+
+  // 3) Push ⑦（ops4）down to align with 本依頼（有償代行）, the actual step that precedes it
   const honjuchuTopNew = topY('cs-honjuchu');
   const ops4Top0 = topY('ops4');
   sp2.style.height = Math.max(0, honjuchuTopNew - ops4Top0) + 'px';
@@ -466,7 +493,9 @@ function drawConnectors(){
     '<marker id="arrowRed" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">'+
       '<path d="M0,0 L8,4 L0,8 z" fill="#c23b22"/></marker>'+
     '<marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">'+
-      '<path d="M0,0 L8,4 L0,8 z" fill="#aab1b9"/></marker>';
+      '<path d="M0,0 L8,4 L0,8 z" fill="#aab1b9"/></marker>'+
+    '<marker id="arrowRed2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">'+
+      '<path d="M0,0 L8,4 L0,8 z" fill="#e0432e"/></marker>';
   svg.appendChild(defs);
 
   const board = document.getElementById('board');
@@ -485,7 +514,7 @@ function drawConnectors(){
     const p = document.createElementNS('http://www.w3.org/2000/svg','path');
     p.setAttribute('d', d);
     p.setAttribute('class', 'arrow ' + cls);
-    p.setAttribute('marker-end', marker);
+    if(marker) p.setAttribute('marker-end', marker);
     svg.appendChild(p);
   }
   function vert(fromId, toId){
@@ -539,6 +568,31 @@ function drawConnectors(){
     const ry = railCenterY();
     addPath(`M ${a.x} ${a.y} L ${gx1} ${a.y} L ${gx1} ${ry} L ${gx2} ${ry} L ${gx2} ${b.y} L ${b.x} ${b.y}`, cls, marker);
   }
+  function convergeBottomGutterRev(fromIds, toId, gutterId, safeY){
+    const b = pt(toId,'right');
+    const gx = centerXOf(gutterId);
+    fromIds.forEach(id => {
+      const a = pt(id,'bottom');
+      addPath(`M ${a.x} ${a.y} L ${a.x} ${safeY} L ${gx} ${safeY} L ${gx} ${b.y} L ${b.x} ${b.y}`, 'solid', 'url(#arrowBlack)');
+    });
+  }
+  function smoothCurve(fromId, fromSide, toId, toSide, cls, marker){
+    const a = pt(fromId, fromSide);
+    const b = pt(toId, toSide);
+    const dx = (b.x - a.x) * 0.5;
+    addPath(`M ${a.x} ${a.y} C ${a.x+dx*0.6} ${a.y}, ${b.x-dx*0.6} ${b.y}, ${b.x} ${b.y}`, cls, marker);
+  }
+  function convergeThenCurve(fromIds, toId, cls, marker){
+    const pts = fromIds.map(id => pt(id,'bottom'));
+    const mergeY = Math.max(...pts.map(p=>p.y)) + 18;
+    const mergeX = (pts[0].x + pts[1].x) / 2;
+    pts.forEach(p => {
+      addPath(`M ${p.x} ${p.y} L ${p.x} ${mergeY} L ${mergeX} ${mergeY}`, cls, null);
+    });
+    const b = pt(toId, 'right');
+    const dx = (mergeX - b.x) * 0.5;
+    addPath(`M ${mergeX} ${mergeY} C ${mergeX-dx*0.6} ${mergeY}, ${b.x+dx*0.6} ${b.y}, ${b.x} ${b.y}`, cls, marker);
+  }
 
   elbowH('is1','fs1','solid','url(#arrowBlack)');
   vert('fs1','fs2');
@@ -558,12 +612,15 @@ function drawConnectors(){
   vert('ops2','ops3');
 
   vert('cs1','cs2');
-  vert('cs2','cs-diamond');
-  const csDBottom = pt('cs-diamond','bottom');
+  const csDBottom = pt('cs2','bottom');
   forkFrom(csDBottom,'csA');
   forkFrom(csDBottom,'csB');
-  convergeTo(['csA','csB'],'cs-honjuchu');
+
   elbowHrev('cs-honjuchu','ops4','solid','url(#arrowBlack)');
+
+  const safeYps = Math.max(pt('csA','bottom').y, pt('csB','bottom').y) + 16;
+  convergeBottomGutterRev(['csA','csB'],'ops-paidsample','gutter-ops-cs', safeYps);
+  elbowH('ops-paidsample','cs-honjuchu','solid','url(#arrowBlack)');
 
   elbowViaRail('fs2-item-paid','cs2','lightdash','url(#arrowGray)','gutter-fs-ops','gutter-ops-cs');
 }
