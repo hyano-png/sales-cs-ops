@@ -325,8 +325,8 @@
         <h4>⑥ 有償代行</h4>
         <ul>
           <li>有償代行が確定したタイミングで実施</li>
-          <li>「p6キックオフ依頼」ワークフロー内に設置されたボタンから有償代行を依頼する</li>
-          <li>以降の流れは下記（A：AI探索／B：セルフ探索）の通り</li>
+          <li>「p6キックオフ依頼」WF内の「有償探索代行を開始する(CS)」ボタンから依頼</li>
+          <li>以降の流れは下記「サンプル依頼」（A：AI探索／B：セルフ探索）の通り</li>
         </ul>
         <div class="assignee-row">
           <span class="chip-assignee"><span class="dot dot-re"></span>再エネ：石川</span>
@@ -334,6 +334,9 @@
           <span class="chip-assignee"><span class="dot dot-roof"></span>屋根：矢野</span>
         </div>
       </div>
+
+      <div class="lead" style="color:var(--cs); margin-top:4px;">▼ サンプル依頼</div>
+      <div class="small">※探索条件の共有は「条件チェックシート」でやり取り（FMT作成中）</div>
 
       <div class="diamond-wrap" id="cs-diamond">
         <div class="diamond diamond-cs"></div>
@@ -348,6 +351,8 @@
             <ul>
               <li>クライアントの要望をもとに1000件のスクリーニング確認（固定5万円で受注）</li>
             </ul>
+            <div class="small">※過去に同様の条件で受注した履歴がある場合は、そのデータを転用してOK</div>
+            <div class="small">※その場合、エリアの違いは加味しない</div>
             <details>
               <summary>算出根拠・確認すべき数字</summary>
               <div class="lead muted">（サンプル固定費用の参考イメージ）</div>
@@ -370,6 +375,8 @@
               <li>クライアントの要望をもとに100件の対象地をピックアップ（固定20万円で受注）</li>
               <li>探索マニュアル納品（自社で運用してもらえるよう促す）</li>
             </ul>
+            <div class="small">※過去に同様の条件で受注した履歴がある場合は、そのデータを転用してOK</div>
+            <div class="small">※その場合、エリアの違いは加味しない</div>
             <details>
               <summary>算出根拠・確認すべき数字</summary>
               <div class="lead muted">（サンプル固定費用の参考イメージ）</div>
@@ -392,8 +399,7 @@
         <ul>
           <li>リスト追加率・作業工数を判定し本受注へ</li>
         </ul>
-        <div class="small">※過去に同様の条件で受注した履歴がある場合は、そのデータを転用してOK</div>
-        <div class="small">※その場合、エリアの違いは加味しない</div>
+        <div class="small">※サンプル対応の有無にかかわらず、WF内の「本依頼へ進む(CS)」ボタンから申請</div>
       </div>
 
     </div>
