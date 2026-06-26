@@ -166,8 +166,8 @@
         <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf">Slack WF</span></div>
         <h4><a href="https://slack.com/shortcuts/Ft0AUDD8B7D4/1e9e4c8183ad2ed196f39a8c1e42bd30" target="_blank" rel="noopener noreferrer">受注前条件確認</a></h4>
         <div class="required-badge">🚨 連携必須</div>
-        <div class="small" style="margin:-2px 0 6px;">工数反映のため、以下は必ず早い段階で申請</div>
-        <div class="required-block">
+        <div class="caution" style="margin-top:0;">⚠ 事前に共有のないスポット案件は工数未確保のため、希望期日に対応できない可能性がありますので、必ず早い段階で連携をお願いします（確度に応じて工数確保をするので確度が低くても連携いただいてOKです）</div>
+        <div class="required-block" style="margin-top:8px;">
         <div class="req-item">
           <div class="req-title"><span class="req-num">1</span>スポット案件</div>
           <div class="req-example">┗ <a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1781056300688939" target="_blank" rel="noopener noreferrer">エレマックス</a>等</div>
@@ -186,14 +186,11 @@
           <div class="req-title"><span class="req-num">3</span>初月から有償探索代行が発生する可能性のある案件が発足した時</div>
         </div>
         </div>
-        <div class="small">※早い段階（納期まで3週間確保できるタイミング）で、確度が低くても連携OK（確度に応じて工数確保）</div>
         <div class="divider"></div>
         <div class="optional-badge">任意</div>
         <div class="small" style="margin-top:0;">「こういう条件で探したい」等の対応可否問い合わせ
           <div class="assignee-row"><span class="chip-assignee"><span class="dot dot-other"></span>矢野</span></div>
         </div>
-        <div class="caution">⚠ 条件確認のないスポット作業は工数未確保のため、希望期日に対応できない可能性あり</div>
-        <div class="pin-note">📌 週初に #ops_general で工数状況・案件一覧を共有（漏れがないか確認してください）</div>
       </div>
 
       <div class="box wf-fs" id="fs3">
@@ -203,7 +200,6 @@
         <div class="small" style="margin-top:0;">必要な場合のみ実施</div>
         <ul>
           <li>商談で見せる実例サンプルを依頼</li>
-          <li>30分で対応できるボリュームに限定</li>
           <li>見積もり用の工数確認</li>
         </ul>
         <div class="assignee-row">
@@ -211,6 +207,7 @@
           <span class="chip-assignee"><span class="dot dot-est"></span>不動産：菊地</span>
           <span class="chip-assignee"><span class="dot dot-roof"></span>屋根：矢野</span>
         </div>
+        <div class="small">※30分で対応できるボリュームに限定</div>
       </div>
 
       <div class="box plain-center box-fs-plain" id="fs4">③ 受注</div>
@@ -228,6 +225,7 @@
             <h4>A. <a href="https://slack.com/shortcuts/Ft09QVEA9T97/55b41eb2a5ad6d736aa762f05c5c6a30" target="_blank" rel="noopener noreferrer">p6キックオフ依頼</a></h4>
             <ul>
               <li>このWF内で初期セットアップ（④）の要否も明記</li>
+              <li>初期セットアップが必要な場合は、希望のエリア・用地種別（蓄電池・高圧太陽光・戸建て用地など）を記載</li>
             </ul>
             <div class="assignee-row">
               <span class="chip-assignee"><span class="dot dot-re"></span>再エネ：石川</span>
@@ -266,6 +264,8 @@
         受注前条件確認の内容をもとに、Ops側で実際に条件確認（＝工数確保）を実施
       </div>
 
+      <div class="pin-note">📌 週初に #ops_general で工数状況・案件一覧を共有（漏れがないか確認してください）</div>
+
       <div id="ops-spacer-sample" style="height:0px;"></div>
 
       <div class="box box-ops-plain" id="ops-sample">
@@ -293,6 +293,7 @@
         <ul>
           <li>「サンプル依頼」の内容（A：AI探索／B：セルフ探索）をもとに、Ops側でサンプルを作成しクライアント環境に納品</li>
           <li>スプレッドシートの必要数値を埋めた状態でCSに連携</li>
+          <li>リスト追加率・作業工数を判定し本依頼へ</li>
         </ul>
         <div class="small">※サンプル対応不要の場合はこの工程をスキップ</div>
         <div class="assignee-row">
@@ -413,10 +414,7 @@
 
       <div class="box box-cs-plain" id="cs-honjuchu">
         <h4>本依頼（有償代行）</h4>
-        <ul>
-          <li>リスト追加率・作業工数を判定し本依頼へ</li>
-        </ul>
-        <div class="small">※サンプル対応の有無にかかわらず、WF内の「本依頼へ進む(CS)」ボタンから申請</div>
+        <div class="small" style="margin-top:0;">※サンプル対応の有無にかかわらず、WF内の「本依頼へ進む(CS)」ボタンから申請</div>
       </div>
 
     </div>
