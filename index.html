@@ -82,7 +82,7 @@
   .box-warn h4{color:var(--ops);}
 
   .caution{color:var(--warn); font-weight:700; font-size:12px; margin-top:9px; display:flex; gap:5px;}
-  .pin-note{background:var(--pin-bg); color:var(--pin-ink); border-radius:6px; padding:6px 10px; font-size:11.5px; margin-top:9px;}
+  .pin-note{position:relative; background:var(--pin-bg); color:var(--pin-ink); border-radius:6px; padding:6px 10px; font-size:11.5px; margin-top:9px;}
   .pending-note{background:#eef0f3; color:#566; border-radius:6px; padding:7px 10px; font-size:11.8px; margin-top:6px; border:1px dashed #c3c9d0;}
 
   .diamond-wrap{position:relative; height:108px; display:flex; align-items:center; justify-content:center;}
@@ -95,6 +95,18 @@
   .fork-chip.chip-cs{color:var(--cs); background:#ece3fb;}
   .fork-row{display:flex; gap:10px;}
   .box-cs-plain{border-color:#d9c8f5;}
+
+  .box-joint{
+    border:2px solid transparent;
+    background:
+      linear-gradient(#fff,#fff) padding-box,
+      linear-gradient(90deg, var(--fs), var(--cs)) border-box;
+  }
+  .joint-badge{
+    display:inline-block; font-size:10.5px; font-weight:800; color:#fff;
+    padding:2px 9px; border-radius:6px; margin-bottom:7px;
+    background:linear-gradient(90deg, var(--fs), var(--cs));
+  }
   .fork-row > div{flex:1; display:flex; flex-direction:column;}
 
   .subbox-row{display:flex; gap:8px; margin-top:8px;}
@@ -133,6 +145,14 @@
   .box details[open] summary{margin-bottom:6px;}
   .safe-caption{position:relative; background:var(--cs-bg); padding:3px 6px; border-radius:6px; text-align:center;}
   .legend{max-width:1360px; margin-top:14px; font-size:11.8px; color:var(--sub);}
+
+  .page-break{margin-top:48px; padding-top:36px; border-top:2px dashed #d8dce1; page-break-before:always;}
+  .manual-note{max-width:1100px; font-size:13px; color:var(--sub); margin:0 0 16px;}
+  .manual-table{border-collapse:collapse; max-width:1100px; font-size:13px; margin-bottom:10px; width:100%;}
+  .manual-table th, .manual-table td{border:1px solid #dfe3e7; padding:10px 14px; text-align:left; vertical-align:top;}
+  .manual-table th{background:#f4f5f6; font-weight:800; color:var(--ink);}
+  .manual-table td{background:#fff;}
+  .manual-table .rule{font-size:11.8px; color:var(--warn); font-weight:700;}
 </style>
 </head>
 <body>
@@ -162,33 +182,29 @@
 
       <div class="box plain-center box-fs-plain" id="fs1">② 商談</div>
 
+      <div class="pin-note">📌 初月から有償探索代行が発生する可能性のある案件は、CSの早期共有と同様に #ops_general で共有してください（確度が低くてもOK）</div>
+
       <div class="box wf-fs" id="fs2">
         <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf">Slack WF</span></div>
-        <h4><a href="https://slack.com/shortcuts/Ft0AUDD8B7D4/1e9e4c8183ad2ed196f39a8c1e42bd30" target="_blank" rel="noopener noreferrer">受注前条件確認</a></h4>
+        <h4><a href="https://slack.com/shortcuts/Ft0AUDD8B7D4/1e9e4c8183ad2ed196f39a8c1e42bd30" target="_blank" rel="noopener noreferrer">受注前対応可否確認</a></h4>
         <div class="required-badge">🚨 連携必須</div>
-        <div class="caution" style="margin-top:0;">⚠ 事前に共有のないスポット案件は工数未確保のため、希望期日に対応できない可能性がありますので、必ず早い段階で連携をお願いします（確度に応じて工数確保をするので確度が低くても連携いただいてOKです）</div>
+        <div class="caution" style="margin-top:0;">⚠ 事前共有がないと工数を確保できず、希望期日に対応できない可能性があります。確度が低くても早めにご連携ください</div>
         <div class="required-block" style="margin-top:8px;">
         <div class="req-item">
-          <div class="req-title"><span class="req-num">1</span>スポット案件</div>
-          <div class="req-example">┗ <a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1781056300688939" target="_blank" rel="noopener noreferrer">エレマックス</a>等</div>
-          <div class="assignee-row"><span class="chip-assignee"><span class="dot dot-other"></span>小林(香)</span></div>
-        </div>
-        <div class="req-item">
-          <div class="req-title"><span class="req-num">2</span>スポットの探索代行案件</div>
-          <div class="req-example">┗ <a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1780552101422599" target="_blank" rel="noopener noreferrer">旭化成ホームズ</a>等</div>
+          <div class="req-title">スポット案件の共有 <span style="color:var(--warn); font-weight:800; font-size:11px; margin-left:4px;">※連携必須</span></div>
+          <div class="req-example">┗ 例：<a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1781056300688939" target="_blank" rel="noopener noreferrer">エレマックス</a>、<a href="https://penetratorinc.slack.com/archives/C0A6KNHFKC3/p1780552101422599" target="_blank" rel="noopener noreferrer">旭化成ホームズ</a> 等</div>
+          <div class="small" style="margin:4px 0 4px;">選択肢（カテゴリ）：</div>
           <div class="assignee-row">
-            <span class="chip-assignee"><span class="dot dot-re"></span>再エネ：石川</span>
-            <span class="chip-assignee"><span class="dot dot-est"></span>不動産：菊地</span>
-            <span class="chip-assignee"><span class="dot dot-roof"></span>屋根：矢野</span>
+            <span class="chip-assignee"><span class="dot dot-re"></span>再エネ探索：石川</span>
+            <span class="chip-assignee"><span class="dot dot-est"></span>不動産探索：菊地</span>
+            <span class="chip-assignee"><span class="dot dot-roof"></span>屋根探索：矢野</span>
+            <span class="chip-assignee"><span class="dot dot-other"></span>その他：小林(香)</span>
           </div>
-        </div>
-        <div class="req-item" id="fs2-item-paid">
-          <div class="req-title"><span class="req-num">3</span>初月から有償探索代行が発生する可能性のある案件が発足した時</div>
         </div>
         </div>
         <div class="divider"></div>
         <div class="optional-badge">任意</div>
-        <div class="small" style="margin-top:0;">「こういう条件で探したい」等の対応可否問い合わせ
+        <div class="small" style="margin-top:0;">探索条件の確認：「こういう条件で探したい」等の対応可否問い合わせ
           <div class="assignee-row"><span class="chip-assignee"><span class="dot dot-other"></span>矢野</span></div>
         </div>
       </div>
@@ -223,16 +239,21 @@
             <div class="fork-chip">A：通常案件</div>
             <div class="tag-row"><span class="tag-hash">#</span><span class="tag-wf">Slack WF</span></div>
             <h4>A. <a href="https://slack.com/shortcuts/Ft09QVEA9T97/55b41eb2a5ad6d736aa762f05c5c6a30" target="_blank" rel="noopener noreferrer">p6キックオフ依頼</a></h4>
-            <ul>
-              <li>このWF内で初期セットアップ（④）の要否も明記</li>
-              <li>初期セットアップが必要な場合は、希望のエリア・用地種別（蓄電池・高圧太陽光・戸建て用地など）を記載</li>
-            </ul>
             <div class="assignee-row">
               <span class="chip-assignee"><span class="dot dot-re"></span>再エネ：石川</span>
               <span class="chip-assignee"><span class="dot dot-est"></span>不動産：菊地</span>
               <span class="chip-assignee"><span class="dot dot-roof"></span>屋根：矢野</span>
             </div>
-            <div class="small">※CSの有償代行依頼（⑥）発生時もこのWFを共通で使用</div>
+          </div>
+
+          <div class="box box-joint" id="fs6a-kickoff" style="margin-top:14px;">
+            <div class="joint-badge">FS × CS</div>
+            <h4>キックオフ（FSとCS）</h4>
+          </div>
+
+          <div class="box box-fs-plain" id="fs6a-setup" style="margin-top:14px;">
+            <h4>必要であれば初期セットアップの依頼（CS→Ops）</h4>
+            <div class="small" style="margin-top:0;">┗ 初期セットアップが必要な場合は、希望のエリア・用地種別（蓄電池・高圧太陽光・戸建て用地など）を記載</div>
           </div>
         </div>
         <div>
@@ -260,8 +281,11 @@
       <div id="ops-spacer-cond" style="height:0px;"></div>
 
       <div class="box box-ops-plain" id="ops-cond">
-        <h4>条件確認（＝工数確保）</h4>
-        受注前条件確認の内容をもとに、Ops側で実際に条件確認（＝工数確保）を実施
+        「<a href="https://slack.com/shortcuts/Ft0AUDD8B7D4/1e9e4c8183ad2ed196f39a8c1e42bd30" target="_blank" rel="noopener noreferrer">受注前対応可否確認</a>」が発動したら、
+        <ul>
+          <li>探索条件の確認の場合は内容の確認</li>
+          <li>スポット案件の共有の場合は内容の確認、必要な工数の確保を進めてください</li>
+        </ul>
       </div>
 
       <div class="pin-note">📌 週初に #ops_general で工数状況・案件一覧を共有（漏れがないか確認してください）</div>
@@ -424,7 +448,51 @@
 </div>
 </div>
 
-<p class="legend">※黒実線：通常工程の流れ／グレー点線：早い段階での緩やかな関連（厳密な手順ではない）／WFステップは破線枠で表記／📝マークは詳細未確定（追って更新予定）の項目</p>
+<p class="legend">※黒実線：通常工程の流れ／WFステップは破線枠で表記／📝マークは詳細未確定（追って更新予定）の項目</p>
+
+<div class="page-break">
+  <p class="page-title">業務アプリ 入力マニュアル</p>
+  <p class="manual-note">各WF・共有経路から届いた情報を、業務アプリのどのリストに登録するかの一覧です。</p>
+
+  <table class="manual-table">
+    <tr>
+      <th>受信したWF／共有経路</th>
+      <th>業務アプリの登録先</th>
+      <th>工数の取り扱い</th>
+    </tr>
+    <tr>
+      <td><a href="https://slack.com/shortcuts/Ft0AUDD8B7D4/1e9e4c8183ad2ed196f39a8c1e42bd30" target="_blank" rel="noopener noreferrer">受注前対応可否確認</a><br>┗ 探索条件の確認</td>
+      <td>受注前条件確認</td>
+      <td class="rule">必ず工数を振り分ける</td>
+    </tr>
+    <tr>
+      <td><a href="https://slack.com/shortcuts/Ft0AUDD8B7D4/1e9e4c8183ad2ed196f39a8c1e42bd30" target="_blank" rel="noopener noreferrer">受注前対応可否確認</a><br>┗ スポット案件の共有</td>
+      <td>スポット案件一覧</td>
+      <td>確度が60%以下の間は割り振り不要</td>
+    </tr>
+    <tr>
+      <td><a href="https://slack.com/shortcuts/Ft0AV5F8CWFK/bd5980b85c5c40c099e8cd578373e846" target="_blank" rel="noopener noreferrer">受注前サンプル依頼</a></td>
+      <td>受注前サンプル</td>
+      <td class="rule">必ず工数を振り分ける</td>
+    </tr>
+    <tr>
+      <td><a href="https://slack.com/shortcuts/Ft09QVEA9T97/55b41eb2a5ad6d736aa762f05c5c6a30" target="_blank" rel="noopener noreferrer">p6キックオフ依頼</a></td>
+      <td>本受注セットアップ</td>
+      <td class="rule">必ず工数を振り分ける</td>
+    </tr>
+    <tr>
+      <td>「p6キックオフ依頼」WF内の「有償探索代行を開始する(CS)」</td>
+      <td>本受注_有償代行</td>
+      <td class="rule">必ず工数を振り分ける</td>
+    </tr>
+    <tr>
+      <td>#ops_general での早期共有（有償探索代行が発生するかもという時点での共有）</td>
+      <td>本受注_有償代行</td>
+      <td>確度60%以下の場合はチェックボックスにチェック（消費予定時間に換算されない）</td>
+    </tr>
+  </table>
+</div>
+
 
 <script>
 function alignLanes(){
@@ -457,7 +525,7 @@ function alignLanes(){
   spSample.style.height = Math.max(0, fs3Top - opsSampleTop0) + 'px';
 
   // 1) Align ④（ops2）with A. p6キックオフ依頼（fs6a）so the arrow between them is short and unambiguous
-  const fs6aTop = topY('fs6a');
+  const fs6aTop = topY('fs6a-setup');
   const ops2Top0 = topY('ops2');
   sp1.style.height = Math.max(0, fs6aTop - ops2Top0) + 'px';
 
@@ -603,9 +671,11 @@ function drawConnectors(){
   const dBottom = pt('fs5','bottom');
   forkFrom(dBottom,'fs6a');
   forkFrom(dBottom,'fs6b');
+  vert('fs6a','fs6a-kickoff');
+  vert('fs6a-kickoff','fs6a-setup');
 
-  const safeY = Math.max(pt('fs6a','bottom').y, pt('fs6b','bottom').y) + 16;
-  elbowBottomGutter('fs6a','ops2','solid','url(#arrowBlack)', safeY);
+  const safeY = Math.max(pt('fs6a-setup','bottom').y, pt('fs6b','bottom').y) + 16;
+  elbowBottomGutter('fs6a-setup','ops2','solid','url(#arrowBlack)', safeY);
   elbowH('fs6b','ops3','solid','url(#arrowBlack)');
   vert('ops2','ops3');
 
@@ -619,8 +689,6 @@ function drawConnectors(){
   const safeYps = Math.max(pt('csA','bottom').y, pt('csB','bottom').y) + 16;
   convergeBottomGutterRev(['csA','csB'],'ops-paidsample','gutter-ops-cs', safeYps);
   elbowH('ops-paidsample','cs-honjuchu','solid','url(#arrowBlack)');
-
-  elbowViaRail('fs2-item-paid','cs2','lightdash','url(#arrowGray)','gutter-fs-ops','gutter-ops-cs');
 }
 window.addEventListener('load', ()=>{
   alignLanes(); drawConnectors();
