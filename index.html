@@ -326,8 +326,10 @@
         <h4>サンプル作成（有償代行）</h4>
         <ul>
           <li>「サンプル依頼」の内容（A：AI探索／B：セルフ探索）をもとに、Ops側でサンプルを作成しクライアント環境に納品</li>
-          <li>スプレッドシートの必要数値を埋めた状態でCSに連携</li>
-          <li>リスト追加率・作業工数を判定し本依頼へ</li>
+          <li>スプレッドシートの必要数値（追加率や作業工数）を埋めた状態でCSに連携</li>
+          <li>探索マニュアルを作成（カテゴリリーダーが探索方法を策定しマニュアル作成→主担当に渡す）
+            <div class="small" style="margin-top:3px;">※納品時にクライアントへも提出。ゆくゆくは型化予定</div>
+          </li>
         </ul>
         <div class="small">※サンプル対応不要の場合はこの工程をスキップ</div>
         <div class="assignee-row">
@@ -400,14 +402,14 @@
             <div class="fork-chip chip-cs">A：AI探索</div>
             <h4>A. AI探索</h4>
             <ul>
-              <li>クライアントの要望をもとに1000件のスクリーニング確認（固定5万円で受注）</li>
+              <li>クライアントの要望をもとに1000件のスクリーニング確認（固定10万円で受注）</li>
             </ul>
             <div class="small">※過去に同様の条件で受注した履歴がある場合は、そのデータを転用してOK</div>
             <div class="small">※その場合、エリアの違いは加味しない</div>
             <details>
               <summary>算出根拠・確認すべき数字</summary>
               <div class="lead muted">（サンプル固定費用の参考イメージ）</div>
-              <div class="small">売値1時間：¥3,000（＝1分50円）で計算 → 16.5時間で1000件のスクリーニングが目安</div>
+              <div class="small">売値1時間：¥3,000（＝1分50円）で計算 → 33.3時間で1000件のスクリーニングが目安</div>
               <div class="small">※スクリーニング1件あたり1分（≒50円）目安で対応できるとgood</div>
               <div class="small">※赤字になる可能性もあるが固定で実施</div>
               <div class="lead muted" style="margin-top:8px;">▼確認するべき数字</div>
@@ -445,6 +447,17 @@
       </div>
 
       <div style="height:26px;"></div>
+
+      <div class="box box-warn" style="border-color:#c0922b; background:#fffbf2;">
+        <h4 style="color:#9a6c0a;">⚠ 作業途中での条件変更は原則禁止</h4>
+        <div class="small" style="margin-top:2px;">条件が変わる場合は以下のいずれかで対応してください：</div>
+        <ul>
+          <li>スクリーニング件数をそのまま維持する場合 → <strong>追加請求</strong></li>
+          <li>費用をそのまま維持する場合 → <strong>スクリーニング件数を減らす</strong></li>
+        </ul>
+        <div class="small">【例】初期に1件20秒×500件の案件で、条件追加により1件30秒になった場合、件数そのままなら追加請求／費用そのままなら件数を約333件に減らして対応</div>
+        <div class="small">※セルフ探索の場合も同様</div>
+      </div>
 
       <div class="box box-cs-plain" id="cs-honjuchu">
         <h4>本依頼（有償代行）</h4>
