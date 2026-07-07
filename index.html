@@ -153,13 +153,6 @@
   .manual-table th{background:#f4f5f6; font-weight:800; color:var(--ink);}
   .manual-table td{background:#fff;}
   .manual-table .rule{font-size:11.8px; color:var(--warn); font-weight:700;}
-
-  .manual-card{background:#fff; border:1.5px solid #d9dde2; border-radius:10px; padding:14px 16px; margin-bottom:14px; max-width:1100px;}
-  .manual-card h4{margin:0 0 8px; font-size:14px; font-weight:800; color:var(--ink);}
-  .manual-card ul{margin:4px 0 0; padding-left:18px; font-size:12.8px; line-height:1.7;}
-  .manual-card li{margin-bottom:5px;}
-  .manual-card .formula{display:inline-block; background:#f4f5f6; border-radius:4px; padding:1px 6px; font-size:11.5px; color:var(--sub); font-family:monospace;}
-  .manual-section-title{font-size:15px; font-weight:800; margin:26px 0 10px; color:var(--ink);}
   .manual-tip{background:#eef6ff; border:1px solid #c9e0f7; border-radius:8px; padding:10px 14px; font-size:12.8px; color:#2c5a82; max-width:1100px; margin-bottom:14px;}
 </style>
 </head>
@@ -472,87 +465,6 @@
 </div>
 
 <p class="legend">※黒実線：通常工程の流れ／WFステップは破線枠で表記／📝マークは詳細未確定（追って更新予定）の項目</p>
-
-<div class="page-break">
-  <p class="page-title">業務アプリ 入力マニュアル</p>
-  <p class="manual-note">各WF・共有経路から届いた情報を、業務アプリのどのリストに登録するかの一覧です。</p>
-
-  <table class="manual-table">
-    <tr>
-      <th>受信したWF／共有経路</th>
-      <th>業務アプリの登録先</th>
-      <th>工数の取り扱い</th>
-    </tr>
-    <tr>
-      <td><a href="https://slack.com/shortcuts/Ft0AUDD8B7D4/1e9e4c8183ad2ed196f39a8c1e42bd30" target="_blank" rel="noopener noreferrer">受注前対応可否確認</a><br>┗ 探索条件の確認</td>
-      <td>受注前条件確認</td>
-      <td class="rule">必ず工数を振り分ける</td>
-    </tr>
-    <tr>
-      <td><a href="https://slack.com/shortcuts/Ft0AUDD8B7D4/1e9e4c8183ad2ed196f39a8c1e42bd30" target="_blank" rel="noopener noreferrer">受注前対応可否確認</a><br>┗ スポット案件の共有</td>
-      <td>スポット案件一覧</td>
-      <td>確度が60%以下の間は割り振り不要</td>
-    </tr>
-    <tr>
-      <td><a href="https://slack.com/shortcuts/Ft0AV5F8CWFK/bd5980b85c5c40c099e8cd578373e846" target="_blank" rel="noopener noreferrer">受注前サンプル依頼</a></td>
-      <td>受注前サンプル</td>
-      <td class="rule">必ず工数を振り分ける</td>
-    </tr>
-    <tr>
-      <td><a href="https://slack.com/shortcuts/Ft09QVEA9T97/55b41eb2a5ad6d736aa762f05c5c6a30" target="_blank" rel="noopener noreferrer">p6キックオフ依頼</a></td>
-      <td>本受注セットアップ</td>
-      <td class="rule">必ず工数を振り分ける</td>
-    </tr>
-    <tr>
-      <td>「p6キックオフ依頼」WF内の「有償探索代行へ進む(CS)」</td>
-      <td>本受注_有償代行</td>
-      <td class="rule">必ず工数を振り分ける</td>
-    </tr>
-    <tr>
-      <td>#ops_general での早期共有（有償探索代行が発生するかもという時点での共有）</td>
-      <td>本受注_有償代行</td>
-      <td>確度60%以下の場合はチェックボックスにチェック（消費予定時間に換算されない）</td>
-    </tr>
-  </table>
-
-  <p class="manual-section-title">カテゴリ別 入力ガイド</p>
-
-  <div class="manual-card">
-    <h4>📋 受注前条件確認／🔬 受注前サンプル／⚡ スポット作業依頼（シンプル入力）</h4>
-    <ul>
-      <li>3カテゴリとも同じ入力項目：「タイトル」「業種カテゴリ（再エネ／不動産／屋根／その他）」「ステータス」「担当者」「作業メンバー（複数選択可・スポット工数の割り振り対象）」「依頼内容（フリーテキスト）」</li>
-      <li>想定時間などの数値入力は不要。条件・件数・エリア・納期などはすべて依頼内容に自由記述でOK</li>
-    </ul>
-  </div>
-
-  <div class="manual-card">
-    <h4>⚙️ 本受注-初期セットアップ</h4>
-    <ul>
-      <li>「用地種別」を選択（複数可：高圧太陽光／低圧太陽光／蓄電池／マンション用地／戸建て用地／その他）すると「想定時間（分/件）」が自動入力される（複数選択時は最大値を採用／高圧太陽光・蓄電池＝15分、その他＝10分）</li>
-      <li>「MRR（円）」と「アカウント開設日」を入力すると、以下が自動算出される
-        <div style="margin-top:4px;">工数上限（分） <span class="formula">＝ MRR × 15% ÷ ¥2,000 × 60</span></div>
-        <div style="margin-top:4px;">目安件数 <span class="formula">＝ 工数上限 ÷ 想定時間</span></div>
-      </li>
-      <li>作業期間タブの「納期」には、アカウント開設日が自動で反映される</li>
-    </ul>
-  </div>
-
-  <div class="manual-card">
-    <h4>🚀 本受注-有償代行</h4>
-    <ul>
-      <li>AI探索／セルフ探索それぞれの「1件あたりのスクリーニング工数（秒）」と「探索条件スプレッドシートURL」を入力</li>
-      <li>作業期間タブで「必要スクリーニング件数」と「うちAI探索（件）／うちセルフ探索（件）」を入力すると、その期間の工数が自動計算される
-        <div style="margin-top:4px;">工数（分） <span class="formula">＝（AI件数 × AI秒数 ＋ セルフ件数 × セルフ秒数）÷ 60</span></div>
-      </li>
-      <li>確度が60%以下（未確定）の場合は「未確定（確度60%以下）」にチェックし、「予想工数（時間）」を手入力。この案件は「ヨミ工数」として別枠集計され、通常の消費予定時間（メンバーの割り振り工数）には加算されない</li>
-    </ul>
-  </div>
-
-  <p class="manual-section-title">チームの空き状況の確認方法</p>
-  <div class="manual-tip">
-    左メニュー「稼働キャパシティ」→「👥 メンバー稼働状況」タブで、メンバーごとの空き時間を確認できます。「空き有のみ」ボタンで空きのあるメンバーだけに絞り込み可能です。月間の全体キャパシティは「📊 サマリー」タブで確認してください。
-  </div>
-</div>
 
 
 <script>
